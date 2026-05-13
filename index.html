@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homie Bites - Brand Story (One Page)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500&family=Prompt:wght@300;400;500&family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            background-color: #e4e6eb;
+            margin: 0;
+            padding: 40px 0;
+            display: flex;
+            justify-content: center;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        /* A4 Setup - Strict Height */
+        .a4-page {
+            width: 794px;
+            height: 1123px;
+            background-color: #FCF8F2;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            color: #433D3C;
+        }
+
+        .a4-page::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(234, 219, 200, 0.4) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        .a4-page::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(178, 83, 62, 0.05) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        .top-bar {
+            height: 8px;
+            background: linear-gradient(90deg, #B2533E, #EADBC8, #B2533E);
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content-wrapper {
+            padding: 35px 50px; /* ปรับลดเพื่อดึงเนื้อหาขึ้น */
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Logo & Header Area */
+        .brand-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px; /* ลดระยะห่าง */
+        }
+
+        .logo-box {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background-color: #FCF8F2; /* สีพื้น solid — กันไม่ให้มีขอบดำตอน print */
+        }
+
+        .logo-box img {
+            max-width: calc(100% - 6px); /* หด 3px รอบด้าน = ขอบ container เป็น solid #FCF8F2 */
+            max-height: calc(100% - 6px);
+            object-fit: contain;
+            mix-blend-mode: multiply;
+        }
+
+        /* โลโก้ไม่ใช้ overlay fade เพราะตัวอักษรอยู่ใกล้ขอบรูป ถ้า fade จะกินตัวอักษรไปด้วย
+           อาศัย mix-blend-mode: multiply ทำให้พื้นขาวของรูป blend กับสี cream ของหน้ากระดาษเองอยู่แล้ว
+           — ไม่มีขอบแข็งให้เห็น */
+
+        .brand-info {
+            text-align: right;
+            max-width: 400px;
+        }
+
+        .brand-name {
+            font-family: 'Comfortaa', cursive;
+            font-size: 34px;
+            color: #B2533E;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-tagline {
+            font-size: 15px;
+            color: #8B7E74;
+            margin-top: 4px;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* Main Story Section */
+        .story-section {
+            display: grid;
+            grid-template-columns: 1fr 230px;
+            gap: 30px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .story-text p {
+            font-size: 14.5px;
+            line-height: 1.65;
+            color: #4A4342;
+            margin: 0 0 12px 0;
+            text-align: left;
+            letter-spacing: 0.2px;
+        }
+
+        .story-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-quote {
+            background: rgba(178, 83, 62, 0.08);
+            padding: 10px 15px;
+            border-left: 4px solid #B2533E;
+            border-radius: 6px;
+            font-size: 14.5px;
+            font-weight: 500;
+            color: #B2533E;
+            display: block;
+            margin: 12px 0;
+            line-height: 1.5;
+        }
+
+        .main-image-container {
+            width: 230px;
+            height: 230px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: #FCF8F2; /* สีพื้นเป็น solid edge — กันรูปทะลุที่ขอบเด็ดขาด */
+        }
+
+        .main-image-container img {
+            width: calc(100% - 8px); /* หดรูป 4px รอบด้าน — ขอบสุดของ container เป็น solid #FCF8F2 */
+            height: calc(100% - 8px);
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Overlay fade 4 ด้าน — แทนที่ mask-composite เดิมที่ Chrome print ไม่รองรับ
+           ทำงานคู่กับ solid edge ของ container เพื่อ guarantee ขอบไม่มีเส้น */
+        .main-image-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(to right,  #FCF8F2 0%, rgba(252,248,242,0) 15%, rgba(252,248,242,0) 85%, #FCF8F2 100%),
+                linear-gradient(to bottom, #FCF8F2 0%, rgba(252,248,242,0) 15%, rgba(252,248,242,0) 85%, #FCF8F2 100%);
+        }
+
+        /* Core Values Grid */
+        .values-section {
+            margin-bottom: auto;
+        }
+
+        .values-header {
+            font-family: 'Mitr', sans-serif;
+            font-size: 18px;
+            color: #B2533E;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .value-card {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 18px 14px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 25px rgba(178, 83, 62, 0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .value-card i {
+            font-size: 24px;
+            color: #B2533E;
+            margin-bottom: 10px;
+            align-self: center;
+        }
+
+        .value-card h3 {
+            font-family: 'Mitr', sans-serif;
+            font-size: 15.5px;
+            margin-bottom: 6px;
+            color: #433D3C;
+            width: 100%;
+            text-align: center;
+        }
+
+        .value-card p {
+            font-size: 13.5px;
+            margin: 0;
+            line-height: 1.55;
+            letter-spacing: 0.1px;
+            color: #5C5452;
+            text-align: left;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            border-top: 1px solid rgba(234, 219, 200, 0.8);
+            padding-top: 20px;
+            background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.4) 100%);
+            border-radius: 0 0 20px 20px;
+        }
+
+        .footer p {
+            font-size: 14.5px;
+            color: #4A4342;
+            margin: 0 0 10px 0;
+            line-height: 1.5;
+            letter-spacing: 0.1px;
+            padding: 0 20px;
+        }
+
+        .brand-signature {
+            font-family: 'Comfortaa';
+            font-weight: 700;
+            color: #B2533E;
+            font-size: 12px;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+
+        /* --- การตั้งค่าสำหรับการ Print --- */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+            body {
+                margin: 0;
+                padding: 0;
+                display: block;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .a4-page {
+                width: 210mm;
+                height: 297mm;
+                box-shadow: none;
+                margin: 0;
+                page-break-inside: avoid;
+                overflow: hidden;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="a4-page">
+        <div class="top-bar"></div>
+        <div class="content-wrapper">
+
+            <!-- Header with Logo and Title -->
+            <div class="brand-header">
+                <div class="logo-box">
+                    <img id="logo-img" src="Logo Homie Bites.jpg" alt="Homie Bites Logo">
+                </div>
+                <div class="brand-info">
+                    <h1 class="brand-name">Homie Bites</h1>
+                    <div class="brand-tagline">ส่งต่อคุณภาพในแบบของเรา<br>ผ่าน "รสชาติ" ที่คุ้มค่าที่สุด</div>
+                </div>
+            </div>
+
+            <!-- Main Story Section -->
+            <div class="story-section">
+                <div class="story-text">
+                    <p>
+                        ว่ากันตามตรงเลยครับ จุดเริ่มต้นของ <strong>Homie Bites</strong> ไม่มีอะไรซับซ้อนไปกว่า "ความชอบ" ผมชอบเข้าครัวทำขนม และมีความสุขทุกครั้งที่เห็นเพื่อนๆ ได้ชิมของอร่อยที่ผมตั้งใจทำ
+                    </p>
+                    <p>
+                        พอเริ่มขยับขยายจากทำแจกมาเป็นทำขาย ผมมีโจทย์หนึ่งในใจที่ชัดเจนมาก คือ <span class="highlight-quote">"ในวันที่เราทุกคนอยากใช้จ่ายอย่างคุ้มค่า ผมจะทำยังไงให้เพื่อนได้กินขนมคุณภาพดี ในราคาที่สบายกระเป๋าที่สุด"</span>
+                    </p>
+                    <p>
+                        นี่จึงเป็นสาเหตุว่า ทำไมร้านเราถึงเลือกใช้แพ็กเกจจิ้ง (Packaging) ที่ดูเรียบง่าย ไม่ได้หวือหวาหรือมีดีไซน์หรูหรา จริงๆ ผมชื่นชมงานดีไซน์สวยๆ นะครับ แต่เพราะสุดท้ายค่าใช้จ่ายเหล่านั้นมักจะถูกบวกเพิ่มเข้าไปในราคาขนม ซึ่งมันคือโจทย์ที่ต่างออกไปสำหรับผม
+                    </p>
+                </div>
+                <div class="main-image-container">
+                    <img id="hero-img" src="1778162643014(1).png" alt="เชฟทำขนมในห้องครัวสไตล์ Ghibli">
+                </div>
+            </div>
+
+            <!-- 3 Core Values (แนวทางของร้าน) -->
+            <div class="values-section">
+                <div class="values-header">สำหรับ Homie Bites ผมตัดสินใจเดินในแนวทางนี้ครับ:</div>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <i class="fa-solid fa-seedling"></i>
+                        <h3>ทุ่มเทให้กับวัตถุดิบ</h3>
+                        <p>ผมเลือกเอาต้นทุนส่วนใหญ่ไปลงกับวัตถุดิบคุณภาพสูง เนยแท้ แป้งเกรดดี และเครื่องที่อัดแน่น แบบเดียวกับที่ผมตั้งใจทำให้คนในครอบครัวกิน เพราะผมเชื่อว่าความสุขที่ทำให้เราอยากกลับมากินขนมชิ้นนั้นซ้ำๆ คือรสชาติและสัมผัสที่ถูกปากจริงๆ</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="fa-solid fa-box-open"></i>
+                        <h3>เน้นความเรียบง่ายที่ปลอดภัย</h3>
+                        <p>ผมเลือกใช้บรรจุภัณฑ์ที่เน้นความสะอาด ปลอดภัย และรักษาคุณภาพขนมให้ดีที่สุด เพื่อลดต้นทุนแฝงที่ไม่จำเป็น แล้วเปลี่ยนส่วนต่างนั้นมา "ส่งต่อเป็นคุณภาพที่มากขึ้น" แทนครับ</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="fa-solid fa-heart"></i>
+                        <h3>ความใส่ใจคือหัวใจ</h3>
+                        <p>เพราะคนทานคือเพื่อน ผมเลยอยากให้เงินทุกบาทที่เพื่อนจ่ายมา เปลี่ยนเป็นความอร่อยที่เข้าถึงง่าย และสั่งทานได้บ่อยเท่าที่ต้องการ</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer (Outro) -->
+            <div class="footer">
+                <p>
+                    ขอบคุณเพื่อนๆ ทุกคนที่เข้าใจและสนับสนุนแนวคิดของร้านขนมเล็กๆ ร้านนี้<br>
+                    แม้หน้าตาภายนอกอาจจะดูธรรมดาเรียบง่าย แต่รับรองว่า <strong>"ความตั้งใจ"</strong> และ <strong>"รสชาติ"</strong> ที่อยู่ข้างใน...
+                </p>
+                <div class="brand-signature">MADE WITH SINCERITY BY HOMIE BITES</div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
