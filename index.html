@@ -1,448 +1,479 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homie Bites - Brand Story (One Page)</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500&family=Prompt:wght@300;400;500&family=Comfortaa:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        * { box-sizing: border-box; }
-        body {
-            background-color: #e4e6eb;
-            margin: 0;
-            padding: 40px 0;
-            display: flex;
-            justify-content: center;
-            font-family: 'Prompt', sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homie Bites - Brand Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500&family=Prompt:wght@300;400;500&family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+* { box-sizing: border-box; }
 
-        /* ----- Language Toggle (ไม่อยู่ในพื้นที่ A4 — ไม่กระทบ layout) ----- */
-        .lang-toggle {
-            position: fixed;
-            top: 24px;
-            right: 24px;
-            z-index: 1000;
-            background: #FFFFFF;
-            border-radius: 30px;
-            padding: 5px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-            display: flex;
-            gap: 3px;
-            font-family: 'Prompt', sans-serif;
-        }
+body {
+  background-color: #e4e6eb;
+  margin: 0;
+  padding: 20px 16px;
+  display: flex;
+  justify-content: center;
+  font-family: 'Prompt', sans-serif;
+  min-height: 100vh;
+}
 
-        .lang-toggle button {
-            border: none;
-            background: transparent;
-            padding: 8px 18px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            color: #8B7E74;
-            transition: all 0.2s ease;
-            font-family: 'Prompt', sans-serif;
-        }
+/* Language Toggle */
+.lang-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1000;
+  background: #FFFFFF;
+  border-radius: 30px;
+  padding: 5px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  display: flex;
+  gap: 3px;
+  font-family: 'Prompt', sans-serif;
+}
+.lang-toggle button {
+  border: none;
+  background: transparent;
+  padding: 7px 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #8B7E74;
+  transition: all 0.2s ease;
+  font-family: 'Prompt', sans-serif;
+}
+.lang-toggle button.active {
+  background: #B2533E;
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(178, 83, 62, 0.3);
+}
+.lang-toggle button:hover:not(.active) {
+  background: rgba(178, 83, 62, 0.08);
+  color: #B2533E;
+}
+html[lang="th"] .lang-en { display: none !important; }
+html[lang="en"] .lang-th { display: none !important; }
 
-        .lang-toggle button.active {
-            background: #B2533E;
-            color: #FFFFFF;
-            box-shadow: 0 2px 8px rgba(178, 83, 62, 0.3);
-        }
+/* Card */
+.a4-page {
+  width: 100%;
+  max-width: 794px;
+  background-color: #FCF8F2;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  color: #433D3C;
+  border-radius: 4px;
+}
 
-        .lang-toggle button:hover:not(.active) {
-            background: rgba(178, 83, 62, 0.08);
-            color: #B2533E;
-        }
+.a4-page::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(234,219,200,0.4) 0%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+.a4-page::after {
+  content: '';
+  position: absolute;
+  bottom: -100px; left: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(178,83,62,0.05) 0%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
 
-        html[lang="th"] .lang-en { display: none !important; }
-        html[lang="en"] .lang-th { display: none !important; }
+.top-bar {
+  height: 8px;
+  background: linear-gradient(90deg, #B2533E, #EADBC8, #B2533E);
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
 
-        .a4-page {
-            width: 794px;
-            height: 1123px;
-            background-color: #FCF8F2;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            color: #433D3C;
-        }
+.content-wrapper {
+  padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
 
-        .a4-page::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(234, 219, 200, 0.4) 0%, transparent 70%);
-            z-index: 0;
-        }
+/* Header */
+.brand-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+.logo-box {
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #FCF8F2;
+}
+.logo-box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+.brand-info {
+  text-align: right;
+  flex: 1;
+}
+.brand-name {
+  font-family: 'Comfortaa', cursive;
+  font-size: 32px;
+  color: #B2533E;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+.brand-tagline {
+  font-size: 14px;
+  color: #8B7E74;
+  margin-top: 4px;
+  font-weight: 400;
+  line-height: 1.5;
+}
 
-        .a4-page::after {
-            content: '';
-            position: absolute;
-            bottom: -100px;
-            left: -100px;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(178, 83, 62, 0.05) 0%, transparent 70%);
-            z-index: 0;
-        }
+/* Story section — desktop: side by side, mobile: stacked */
+.story-section {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  gap: 24px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+.story-text p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #4A4342;
+  margin: 0 0 11px 0;
+  letter-spacing: 0.2px;
+}
+.story-text p:last-of-type { margin-bottom: 0; }
+.highlight-quote {
+  background: rgba(178,83,62,0.08);
+  padding: 10px 14px;
+  border-left: 4px solid #B2533E;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #B2533E;
+  display: block;
+  margin: 11px 0;
+  line-height: 1.55;
+}
+.main-image-container {
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #FCF8F2;
+}
+.main-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.main-image-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to right,  #FCF8F2 0%, rgba(252,248,242,0) 18%, rgba(252,248,242,0) 82%, #FCF8F2 100%),
+    linear-gradient(to bottom, #FCF8F2 0%, rgba(252,248,242,0) 18%, rgba(252,248,242,0) 82%, #FCF8F2 100%);
+}
 
-        .top-bar {
-            height: 8px;
-            background: linear-gradient(90deg, #B2533E, #EADBC8, #B2533E);
-            width: 100%;
-            position: relative;
-            z-index: 2;
-        }
+/* Values */
+.values-section { margin-bottom: 20px; }
+.values-header {
+  font-family: 'Mitr', sans-serif;
+  font-size: 16px;
+  color: #B2533E;
+  margin-bottom: 14px;
+  text-align: center;
+}
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.value-card {
+  background: rgba(255,255,255,0.6);
+  padding: 16px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.9);
+  box-shadow: 0 8px 20px rgba(178,83,62,0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.value-card i {
+  font-size: 22px;
+  color: #B2533E;
+  margin-bottom: 8px;
+  align-self: center;
+}
+.value-card h3 {
+  font-family: 'Mitr', sans-serif;
+  font-size: 14.5px;
+  margin: 0 0 6px 0;
+  color: #433D3C;
+  width: 100%;
+  text-align: center;
+}
+.value-card p {
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.55;
+  letter-spacing: 0.1px;
+  color: #5C5452;
+  text-align: left;
+}
 
-        .content-wrapper {
-            padding: 35px 50px;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            position: relative;
-            z-index: 2;
-        }
+/* Footer */
+.footer {
+  margin-top: 4px;
+  text-align: center;
+  border-top: 1px solid rgba(234,219,200,0.8);
+  padding-top: 18px;
+  padding-bottom: 20px;
+}
+.footer p {
+  font-size: 13.5px;
+  color: #4A4342;
+  margin: 0 0 10px 0;
+  line-height: 1.6;
+  letter-spacing: 0.1px;
+  padding: 0 10px;
+}
+.brand-signature {
+  font-family: 'Comfortaa', cursive;
+  font-weight: 700;
+  color: #B2533E;
+  font-size: 11px;
+  letter-spacing: 2px;
+  opacity: 0.9;
+}
 
-        .brand-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
+/* ===== MOBILE (≤ 520px) ===== */
+@media (max-width: 520px) {
+  body { padding: 12px 10px 24px; }
 
-        .logo-box {
-            width: 100px;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            background-color: #FCF8F2;
-        }
+  .lang-toggle { top: 10px; right: 10px; }
+  .lang-toggle button { padding: 6px 13px; font-size: 12px; }
 
-        .logo-box img {
-            max-width: calc(100% - 6px);
-            max-height: calc(100% - 6px);
-            object-fit: contain;
-            mix-blend-mode: multiply;
-        }
+  .content-wrapper { padding: 20px 18px; }
 
-        .brand-info {
-            text-align: right;
-            max-width: 400px;
-        }
+  /* Header: stack logo + text vertically, centered */
+  .brand-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .logo-box { width: 72px; height: 72px; }
+  .brand-info { text-align: center; }
+  .brand-name { font-size: 26px; }
+  .brand-tagline { font-size: 13px; }
 
-        .brand-name {
-            font-family: 'Comfortaa', cursive;
-            font-size: 34px;
-            color: #B2533E;
-            margin: 0;
-            letter-spacing: -0.5px;
-        }
+  /* Story: stack image above text */
+  .story-section {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .main-image-container {
+    width: 100%;
+    height: 200px;
+    order: -1; /* รูปอยู่ข้างบน */
+  }
+  .story-text p { font-size: 13.5px; }
+  .highlight-quote { font-size: 13.5px; }
 
-        .brand-tagline {
-            font-size: 15px;
-            color: #8B7E74;
-            margin-top: 4px;
-            font-weight: 400;
-            line-height: 1.4;
-        }
+  /* Values: 1 column on very small screens */
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .value-card { flex-direction: row; align-items: flex-start; gap: 12px; padding: 14px; }
+  .value-card i { font-size: 20px; margin-bottom: 0; align-self: flex-start; margin-top: 2px; flex-shrink: 0; }
+  .value-card .card-text { flex: 1; }
+  .value-card h3 { text-align: left; font-size: 14px; margin-bottom: 4px; }
+  .value-card p { font-size: 13px; }
+  .values-header { font-size: 14.5px; }
 
-        .story-section {
-            display: grid;
-            grid-template-columns: 1fr 230px;
-            gap: 30px;
-            margin-bottom: 20px;
-            align-items: center;
-        }
+  .footer p { font-size: 13px; }
+}
 
-        .story-text p {
-            font-size: 14.5px;
-            line-height: 1.65;
-            color: #4A4342;
-            margin: 0 0 12px 0;
-            text-align: left;
-            letter-spacing: 0.2px;
-        }
+/* ===== TABLET (521px – 768px) ===== */
+@media (min-width: 521px) and (max-width: 768px) {
+  .content-wrapper { padding: 24px 28px; }
+  .story-section { grid-template-columns: 1fr 170px; }
+  .main-image-container { width: 170px; height: 170px; }
+  .values-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .value-card p { font-size: 12.5px; }
+}
 
-        .story-text p:last-of-type {
-            margin-bottom: 0;
-        }
-
-        .highlight-quote {
-            background: rgba(178, 83, 62, 0.08);
-            padding: 10px 15px;
-            border-left: 4px solid #B2533E;
-            border-radius: 6px;
-            font-size: 14.5px;
-            font-weight: 500;
-            color: #B2533E;
-            display: block;
-            margin: 12px 0;
-            line-height: 1.5;
-        }
-
-        .main-image-container {
-            width: 230px;
-            height: 230px;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            background-color: #FCF8F2;
-        }
-
-        .main-image-container img {
-            width: calc(100% - 8px);
-            height: calc(100% - 8px);
-            object-fit: cover;
-            display: block;
-        }
-
-        .main-image-container::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            background:
-                linear-gradient(to right,  #FCF8F2 0%, rgba(252,248,242,0) 15%, rgba(252,248,242,0) 85%, #FCF8F2 100%),
-                linear-gradient(to bottom, #FCF8F2 0%, rgba(252,248,242,0) 15%, rgba(252,248,242,0) 85%, #FCF8F2 100%);
-        }
-
-        .values-section {
-            margin-bottom: auto;
-        }
-
-        .values-header {
-            font-family: 'Mitr', sans-serif;
-            font-size: 18px;
-            color: #B2533E;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-        }
-
-        .value-card {
-            background: rgba(255, 255, 255, 0.6);
-            padding: 18px 14px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 0 10px 25px rgba(178, 83, 62, 0.03);
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .value-card i {
-            font-size: 24px;
-            color: #B2533E;
-            margin-bottom: 10px;
-            align-self: center;
-        }
-
-        .value-card h3 {
-            font-family: 'Mitr', sans-serif;
-            font-size: 15.5px;
-            margin-bottom: 6px;
-            color: #433D3C;
-            width: 100%;
-            text-align: center;
-        }
-
-        .value-card p {
-            font-size: 13.5px;
-            margin: 0;
-            line-height: 1.55;
-            letter-spacing: 0.1px;
-            color: #5C5452;
-            text-align: left;
-        }
-
-        .footer {
-            margin-top: 20px;
-            text-align: center;
-            border-top: 1px solid rgba(234, 219, 200, 0.8);
-            padding-top: 20px;
-            background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.4) 100%);
-            border-radius: 0 0 20px 20px;
-        }
-
-        .footer p {
-            font-size: 14.5px;
-            color: #4A4342;
-            margin: 0 0 10px 0;
-            line-height: 1.5;
-            letter-spacing: 0.1px;
-            padding: 0 20px;
-        }
-
-        .brand-signature {
-            font-family: 'Comfortaa';
-            font-weight: 700;
-            color: #B2533E;
-            font-size: 12px;
-            letter-spacing: 2px;
-            opacity: 0.9;
-        }
-
-        @media print {
-            @page {
-                size: A4 portrait;
-                margin: 0;
-            }
-            body {
-                margin: 0;
-                padding: 0;
-                display: block;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-            .a4-page {
-                width: 210mm;
-                height: 297mm;
-                box-shadow: none;
-                margin: 0;
-                page-break-inside: avoid;
-                overflow: hidden;
-            }
-            .lang-toggle { display: none !important; }
-        }
-    </style>
+/* ===== PRINT ===== */
+@media print {
+  @page { size: A4 portrait; margin: 0; }
+  body { margin: 0; padding: 0; display: block; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .a4-page { width: 210mm; box-shadow: none; margin: 0; }
+  .lang-toggle { display: none !important; }
+}
+</style>
 </head>
 <body>
 
-    <!-- Language Toggle (อยู่นอก A4 — print แล้วไม่เห็น) -->
-    <div class="lang-toggle">
-        <button class="active" data-lang="th" onclick="switchLang('th')">ไทย</button>
-        <button data-lang="en" onclick="switchLang('en')">EN</button>
-    </div>
+<div class="lang-toggle">
+  <button class="active" data-lang="th" onclick="switchLang('th')">ไทย</button>
+  <button data-lang="en" onclick="switchLang('en')">EN</button>
+</div>
 
-    <div class="a4-page">
-        <div class="top-bar"></div>
-        <div class="content-wrapper">
+<div class="a4-page">
+  <div class="top-bar"></div>
+  <div class="content-wrapper">
 
-            <div class="brand-header">
-                <div class="logo-box">
-                    <img id="logo-img" src="Logo Homie Bites.jpg" alt="Homie Bites Logo">
-                </div>
-                <div class="brand-info">
-                    <h1 class="brand-name">Homie Bites</h1>
-                    <div class="brand-tagline">
-                        <span class="lang-th">ส่งต่อคุณภาพในแบบของเรา<br>ผ่าน "รสชาติ" ที่คุ้มค่าที่สุด</span>
-                        <span class="lang-en">Quality in our own way<br>shared through "flavor" worth every bite</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="story-section">
-                <div class="story-text">
-                    <p class="lang-th">
-                        ว่ากันตามตรงเลยครับ จุดเริ่มต้นของ <strong>Homie Bites</strong> ไม่มีอะไรซับซ้อนไปกว่า "ความชอบ" ผมชอบเข้าครัวทำขนม และมีความสุขทุกครั้งที่เห็นเพื่อนๆ ได้ชิมของอร่อยที่ผมตั้งใจทำ
-                    </p>
-                    <p class="lang-en">
-                        To be honest, the start of <strong>Homie Bites</strong> wasn't anything more complicated than "passion." I love being in the kitchen baking, and I find real joy every time friends get to taste something I've made with care.
-                    </p>
-
-                    <p class="lang-th">
-                        พอเริ่มขยับขยายจากทำแจกมาเป็นทำขาย ผมมีโจทย์หนึ่งในใจที่ชัดเจนมาก คือ <span class="highlight-quote">"ในวันที่เราทุกคนอยากใช้จ่ายอย่างคุ้มค่า ผมจะทำยังไงให้เพื่อนได้กินขนมคุณภาพดี ในราคาที่สบายกระเป๋าที่สุด"</span>
-                    </p>
-                    <p class="lang-en">
-                        When I moved from sharing bakes with friends to actually selling them, I had one very clear question in mind: <span class="highlight-quote">"In a time when everyone wants to spend wisely, how can I let my friends enjoy quality bakes at the most wallet-friendly price possible?"</span>
-                    </p>
-
-                    <p class="lang-th">
-                        นี่จึงเป็นสาเหตุว่า ทำไมร้านเราถึงเลือกใช้แพ็กเกจจิ้ง (Packaging) ที่ดูเรียบง่าย ไม่ได้หวือหวาหรือมีดีไซน์หรูหรา จริงๆ ผมชื่นชมงานดีไซน์สวยๆ นะครับ แต่เพราะสุดท้ายค่าใช้จ่ายเหล่านั้นมักจะถูกบวกเพิ่มเข้าไปในราคาขนม ซึ่งมันคือโจทย์ที่ต่างออกไปสำหรับผม
-                    </p>
-                    <p class="lang-en">
-                        That's exactly why we chose simple packaging — nothing flashy, no luxurious design. Honestly, I admire beautiful design work, but in the end those costs always get added into the price of the bake — and that's a different goal from mine.
-                    </p>
-                </div>
-                <div class="main-image-container">
-                    <img id="hero-img" src="1778162643014(1).png" alt="Baker in a Ghibli-style kitchen">
-                </div>
-            </div>
-
-            <div class="values-section">
-                <div class="values-header">
-                    <span class="lang-th">สำหรับ Homie Bites ผมตัดสินใจเดินในแนวทางนี้ครับ:</span>
-                    <span class="lang-en">For Homie Bites, I've chosen to walk this path:</span>
-                </div>
-                <div class="values-grid">
-                    <div class="value-card">
-                        <i class="fa-solid fa-seedling"></i>
-                        <h3>
-                            <span class="lang-th">ทุ่มเทให้กับวัตถุดิบ</span>
-                            <span class="lang-en">All In on Ingredients</span>
-                        </h3>
-                        <p class="lang-th">ผมเลือกเอาต้นทุนส่วนใหญ่ไปลงกับวัตถุดิบคุณภาพสูง เนยแท้ แป้งเกรดดี และเครื่องที่อัดแน่น แบบเดียวกับที่ผมตั้งใจทำให้คนในครอบครัวกิน เพราะผมเชื่อว่าความสุขที่ทำให้เราอยากกลับมากินขนมชิ้นนั้นซ้ำๆ คือรสชาติและสัมผัสที่ถูกปากจริงๆ</p>
-                        <p class="lang-en">I put most of the cost into top-quality ingredients — real butter, fine flour, and generous fillings — just like what I'd make for my own family. Because the joy that makes you come back for the same bake again is the real taste and texture you genuinely love.</p>
-                    </div>
-                    <div class="value-card">
-                        <i class="fa-solid fa-box-open"></i>
-                        <h3>
-                            <span class="lang-th">เน้นความเรียบง่ายที่ปลอดภัย</span>
-                            <span class="lang-en">Simple, Safe Packaging</span>
-                        </h3>
-                        <p class="lang-th">ผมเลือกใช้บรรจุภัณฑ์ที่เน้นความสะอาด ปลอดภัย และรักษาคุณภาพขนมให้ดีที่สุด เพื่อลดต้นทุนแฝงที่ไม่จำเป็น แล้วเปลี่ยนส่วนต่างนั้นมา "ส่งต่อเป็นคุณภาพที่มากขึ้น" แทนครับ</p>
-                        <p class="lang-en">I use packaging that focuses on cleanliness, safety, and keeping the bakes at their best — cutting unnecessary hidden costs and turning that savings into "more quality passed back to you" instead.</p>
-                    </div>
-                    <div class="value-card">
-                        <i class="fa-solid fa-heart"></i>
-                        <h3>
-                            <span class="lang-th">ความใส่ใจคือหัวใจ</span>
-                            <span class="lang-en">Care at the Heart</span>
-                        </h3>
-                        <p class="lang-th">เพราะคนทานคือเพื่อน ผมเลยอยากให้เงินทุกบาทที่เพื่อนจ่ายมา เปลี่ยนเป็นความอร่อยที่เข้าถึงง่าย และสั่งทานได้บ่อยเท่าที่ต้องการ</p>
-                        <p class="lang-en">Because the people eating are friends, I want every baht they spend to turn into deliciousness that's easy to enjoy — and easy to order again, as often as they like.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer">
-                <p class="lang-th">
-                    ขอบคุณเพื่อนๆ ทุกคนที่เข้าใจและสนับสนุนแนวคิดของร้านขนมเล็กๆ ร้านนี้<br>
-                    แม้หน้าตาภายนอกอาจจะดูธรรมดาเรียบง่าย แต่รับรองว่า <strong>"ความตั้งใจ"</strong> และ <strong>"รสชาติ"</strong> ที่อยู่ข้างใน...
-                </p>
-                <p class="lang-en">
-                    Thank you to every friend who understands and supports the heart of this little bakery.<br>
-                    The outside may look plain and simple, but I promise — <strong>"intention"</strong> and <strong>"flavor"</strong> are very much alive inside...
-                </p>
-                <div class="brand-signature">MADE WITH SINCERITY BY HOMIE BITES</div>
-            </div>
-
+    <!-- Header -->
+    <div class="brand-header">
+      <div class="logo-box">
+        <img id="logo-img" src="Logo Homie Bites.jpg" alt="Homie Bites Logo">
+      </div>
+      <div class="brand-info">
+        <h1 class="brand-name">Homie Bites</h1>
+        <div class="brand-tagline">
+          <span class="lang-th">ส่งต่อคุณภาพในแบบของเรา<br>ผ่าน "รสชาติ" ที่คุ้มค่าที่สุด</span>
+          <span class="lang-en">Quality in our own way<br>shared through "flavor" worth every bite</span>
         </div>
+      </div>
     </div>
 
-    <script>
-        function switchLang(lang) {
-            document.documentElement.setAttribute('lang', lang);
-            document.querySelectorAll('.lang-toggle button').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.lang === lang);
-            });
-            try { localStorage.setItem('homiebites_lang', lang); } catch(e) {}
-        }
+    <!-- Story -->
+    <div class="story-section">
+      <div class="story-text">
+        <p class="lang-th">
+          ว่ากันตามตรงเลยครับ จุดเริ่มต้นของ <strong>Homie Bites</strong> ไม่มีอะไรซับซ้อนไปกว่า "ความชอบ" ผมชอบเข้าครัวทำขนม และมีความสุขทุกครั้งที่เห็นเพื่อนๆ ได้ชิมของอร่อยที่ผมตั้งใจทำ
+        </p>
+        <p class="lang-en">
+          To be honest, the start of <strong>Homie Bites</strong> wasn't anything more complicated than "passion." I love being in the kitchen baking, and I find real joy every time friends get to taste something I've made with care.
+        </p>
+        <p class="lang-th">
+          พอเริ่มขยับขยายจากทำแจกมาเป็นทำขาย ผมมีโจทย์หนึ่งในใจที่ชัดเจนมาก คือ <span class="highlight-quote">"ในวันที่เราทุกคนอยากใช้จ่ายอย่างคุ้มค่า ผมจะทำยังไงให้เพื่อนได้กินขนมคุณภาพดี ในราคาที่สบายกระเป๋าที่สุด"</span>
+        </p>
+        <p class="lang-en">
+          When I moved from sharing bakes with friends to actually selling them, I had one very clear question in mind: <span class="highlight-quote">"In a time when everyone wants to spend wisely, how can I let my friends enjoy quality bakes at the most wallet-friendly price possible?"</span>
+        </p>
+        <p class="lang-th">
+          นี่จึงเป็นสาเหตุว่า ทำไมร้านเราถึงเลือกใช้แพ็กเกจจิ้งที่ดูเรียบง่าย ไม่ได้หวือหวาหรือมีดีไซน์หรูหรา จริงๆ ผมชื่นชมงานดีไซน์สวยๆ นะครับ แต่เพราะสุดท้ายค่าใช้จ่ายเหล่านั้นมักจะถูกบวกเพิ่มเข้าไปในราคาขนม ซึ่งมันคือโจทย์ที่ต่างออกไปสำหรับผม
+        </p>
+        <p class="lang-en">
+          That's exactly why we chose simple packaging — nothing flashy, no luxurious design. Honestly, I admire beautiful design work, but in the end those costs always get added into the price of the bake — and that's a different goal from mine.
+        </p>
+      </div>
 
-        try {
-            const saved = localStorage.getItem('homiebites_lang');
-            if (saved === 'th' || saved === 'en') switchLang(saved);
-        } catch(e) {}
-    </script>
+      <div class="main-image-container">
+        <img id="hero-img" src="1778162643014(1).png" alt="Baker in a Ghibli-style kitchen">
+      </div>
+    </div>
 
+    <!-- Values -->
+    <div class="values-section">
+      <div class="values-header">
+        <span class="lang-th">สำหรับ Homie Bites ผมตัดสินใจเดินในแนวทางนี้ครับ:</span>
+        <span class="lang-en">For Homie Bites, I've chosen to walk this path:</span>
+      </div>
+      <div class="values-grid">
+
+        <div class="value-card">
+          <i class="fa-solid fa-seedling"></i>
+          <div class="card-text">
+            <h3>
+              <span class="lang-th">ทุ่มเทให้กับวัตถุดิบ</span>
+              <span class="lang-en">All In on Ingredients</span>
+            </h3>
+            <p class="lang-th">ผมเลือกเอาต้นทุนส่วนใหญ่ไปลงกับวัตถุดิบคุณภาพสูง เนยแท้ แป้งเกรดดี และเครื่องที่อัดแน่น แบบเดียวกับที่ผมตั้งใจทำให้คนในครอบครัวกิน เพราะผมเชื่อว่าความสุขที่ทำให้เราอยากกลับมากินขนมชิ้นนั้นซ้ำๆ คือรสชาติและสัมผัสที่ถูกปากจริงๆ</p>
+            <p class="lang-en">I put most of the cost into top-quality ingredients — real butter, fine flour, and generous fillings — just like what I'd make for my own family. Because the joy that makes you come back for the same bake again is the real taste and texture you genuinely love.</p>
+          </div>
+        </div>
+
+        <div class="value-card">
+          <i class="fa-solid fa-box-open"></i>
+          <div class="card-text">
+            <h3>
+              <span class="lang-th">เน้นความเรียบง่ายที่ปลอดภัย</span>
+              <span class="lang-en">Simple, Safe Packaging</span>
+            </h3>
+            <p class="lang-th">ผมเลือกใช้บรรจุภัณฑ์ที่เน้นความสะอาด ปลอดภัย และรักษาคุณภาพขนมให้ดีที่สุด เพื่อลดต้นทุนแฝงที่ไม่จำเป็น แล้วเปลี่ยนส่วนต่างนั้นมา "ส่งต่อเป็นคุณภาพที่มากขึ้น" แทนครับ</p>
+            <p class="lang-en">I use packaging that focuses on cleanliness, safety, and keeping the bakes at their best — cutting unnecessary hidden costs and turning that savings into "more quality passed back to you" instead.</p>
+          </div>
+        </div>
+
+        <div class="value-card">
+          <i class="fa-solid fa-heart"></i>
+          <div class="card-text">
+            <h3>
+              <span class="lang-th">ความใส่ใจคือหัวใจ</span>
+              <span class="lang-en">Care at the Heart</span>
+            </h3>
+            <p class="lang-th">เพราะคนทานคือเพื่อน ผมเลยอยากให้เงินทุกบาทที่เพื่อนจ่ายมา เปลี่ยนเป็นความอร่อยที่เข้าถึงง่าย และสั่งทานได้บ่อยเท่าที่ต้องการ</p>
+            <p class="lang-en">Because the people eating are friends, I want every baht they spend to turn into deliciousness that's easy to enjoy — and easy to order again, as often as they like.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p class="lang-th">
+        ขอบคุณเพื่อนๆ ทุกคนที่เข้าใจและสนับสนุนแนวคิดของร้านขนมเล็กๆ ร้านนี้<br>
+        แม้หน้าตาภายนอกอาจจะดูธรรมดาเรียบง่าย แต่รับรองว่า <strong>"ความตั้งใจ"</strong> และ <strong>"รสชาติ"</strong> ที่อยู่ข้างใน...
+      </p>
+      <p class="lang-en">
+        Thank you to every friend who understands and supports the heart of this little bakery.<br>
+        The outside may look plain and simple, but I promise — <strong>"intention"</strong> and <strong>"flavor"</strong> are very much alive inside...
+      </p>
+      <div class="brand-signature">MADE WITH SINCERITY BY HOMIE BITES</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function switchLang(lang) {
+  document.documentElement.setAttribute('lang', lang);
+  document.querySelectorAll('.lang-toggle button').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+  try { localStorage.setItem('homiebites_lang', lang); } catch(e) {}
+}
+try {
+  const saved = localStorage.getItem('homiebites_lang');
+  if (saved === 'th' || saved === 'en') switchLang(saved);
+} catch(e) {}
+</script>
 </body>
 </html>
