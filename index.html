@@ -19,7 +19,48 @@
             font-family: 'Prompt', sans-serif;
         }
 
-        /* A4 Setup - Strict Height */
+        /* ----- Language Toggle (ไม่อยู่ในพื้นที่ A4 — ไม่กระทบ layout) ----- */
+        .lang-toggle {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 1000;
+            background: #FFFFFF;
+            border-radius: 30px;
+            padding: 5px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+            display: flex;
+            gap: 3px;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        .lang-toggle button {
+            border: none;
+            background: transparent;
+            padding: 8px 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #8B7E74;
+            transition: all 0.2s ease;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        .lang-toggle button.active {
+            background: #B2533E;
+            color: #FFFFFF;
+            box-shadow: 0 2px 8px rgba(178, 83, 62, 0.3);
+        }
+
+        .lang-toggle button:hover:not(.active) {
+            background: rgba(178, 83, 62, 0.08);
+            color: #B2533E;
+        }
+
+        html[lang="th"] .lang-en { display: none !important; }
+        html[lang="en"] .lang-th { display: none !important; }
+
         .a4-page {
             width: 794px;
             height: 1123px;
@@ -63,7 +104,7 @@
         }
 
         .content-wrapper {
-            padding: 35px 50px; /* ปรับลดเพื่อดึงเนื้อหาขึ้น */
+            padding: 35px 50px;
             display: flex;
             flex-direction: column;
             height: 100%;
@@ -71,12 +112,11 @@
             z-index: 2;
         }
 
-        /* Logo & Header Area */
         .brand-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px; /* ลดระยะห่าง */
+            margin-bottom: 25px;
         }
 
         .logo-box {
@@ -87,19 +127,15 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            background-color: #FCF8F2; /* สีพื้น solid — กันไม่ให้มีขอบดำตอน print */
+            background-color: #FCF8F2;
         }
 
         .logo-box img {
-            max-width: calc(100% - 6px); /* หด 3px รอบด้าน = ขอบ container เป็น solid #FCF8F2 */
+            max-width: calc(100% - 6px);
             max-height: calc(100% - 6px);
             object-fit: contain;
             mix-blend-mode: multiply;
         }
-
-        /* โลโก้ไม่ใช้ overlay fade เพราะตัวอักษรอยู่ใกล้ขอบรูป ถ้า fade จะกินตัวอักษรไปด้วย
-           อาศัย mix-blend-mode: multiply ทำให้พื้นขาวของรูป blend กับสี cream ของหน้ากระดาษเองอยู่แล้ว
-           — ไม่มีขอบแข็งให้เห็น */
 
         .brand-info {
             text-align: right;
@@ -122,7 +158,6 @@
             line-height: 1.4;
         }
 
-        /* Main Story Section */
         .story-section {
             display: grid;
             grid-template-columns: 1fr 230px;
@@ -140,7 +175,7 @@
             letter-spacing: 0.2px;
         }
 
-        .story-text p:last-child {
+        .story-text p:last-of-type {
             margin-bottom: 0;
         }
 
@@ -165,18 +200,16 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            background-color: #FCF8F2; /* สีพื้นเป็น solid edge — กันรูปทะลุที่ขอบเด็ดขาด */
+            background-color: #FCF8F2;
         }
 
         .main-image-container img {
-            width: calc(100% - 8px); /* หดรูป 4px รอบด้าน — ขอบสุดของ container เป็น solid #FCF8F2 */
+            width: calc(100% - 8px);
             height: calc(100% - 8px);
             object-fit: cover;
             display: block;
         }
 
-        /* Overlay fade 4 ด้าน — แทนที่ mask-composite เดิมที่ Chrome print ไม่รองรับ
-           ทำงานคู่กับ solid edge ของ container เพื่อ guarantee ขอบไม่มีเส้น */
         .main-image-container::after {
             content: '';
             position: absolute;
@@ -187,7 +220,6 @@
                 linear-gradient(to bottom, #FCF8F2 0%, rgba(252,248,242,0) 15%, rgba(252,248,242,0) 85%, #FCF8F2 100%);
         }
 
-        /* Core Values Grid */
         .values-section {
             margin-bottom: auto;
         }
@@ -242,7 +274,6 @@
             text-align: left;
         }
 
-        /* Footer */
         .footer {
             margin-top: 20px;
             text-align: center;
@@ -270,7 +301,6 @@
             opacity: 0.9;
         }
 
-        /* --- การตั้งค่าสำหรับการ Print --- */
         @media print {
             @page {
                 size: A4 portrait;
@@ -291,77 +321,128 @@
                 page-break-inside: avoid;
                 overflow: hidden;
             }
+            .lang-toggle { display: none !important; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Language Toggle (อยู่นอก A4 — print แล้วไม่เห็น) -->
+    <div class="lang-toggle">
+        <button class="active" data-lang="th" onclick="switchLang('th')">ไทย</button>
+        <button data-lang="en" onclick="switchLang('en')">EN</button>
+    </div>
+
     <div class="a4-page">
         <div class="top-bar"></div>
         <div class="content-wrapper">
 
-            <!-- Header with Logo and Title -->
             <div class="brand-header">
                 <div class="logo-box">
                     <img id="logo-img" src="Logo Homie Bites.jpg" alt="Homie Bites Logo">
                 </div>
                 <div class="brand-info">
                     <h1 class="brand-name">Homie Bites</h1>
-                    <div class="brand-tagline">ส่งต่อคุณภาพในแบบของเรา<br>ผ่าน "รสชาติ" ที่คุ้มค่าที่สุด</div>
+                    <div class="brand-tagline">
+                        <span class="lang-th">ส่งต่อคุณภาพในแบบของเรา<br>ผ่าน "รสชาติ" ที่คุ้มค่าที่สุด</span>
+                        <span class="lang-en">Quality in our own way<br>shared through "flavor" worth every bite</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Main Story Section -->
             <div class="story-section">
                 <div class="story-text">
-                    <p>
+                    <p class="lang-th">
                         ว่ากันตามตรงเลยครับ จุดเริ่มต้นของ <strong>Homie Bites</strong> ไม่มีอะไรซับซ้อนไปกว่า "ความชอบ" ผมชอบเข้าครัวทำขนม และมีความสุขทุกครั้งที่เห็นเพื่อนๆ ได้ชิมของอร่อยที่ผมตั้งใจทำ
                     </p>
-                    <p>
+                    <p class="lang-en">
+                        To be honest, the start of <strong>Homie Bites</strong> wasn't anything more complicated than "passion." I love being in the kitchen baking, and I find real joy every time friends get to taste something I've made with care.
+                    </p>
+
+                    <p class="lang-th">
                         พอเริ่มขยับขยายจากทำแจกมาเป็นทำขาย ผมมีโจทย์หนึ่งในใจที่ชัดเจนมาก คือ <span class="highlight-quote">"ในวันที่เราทุกคนอยากใช้จ่ายอย่างคุ้มค่า ผมจะทำยังไงให้เพื่อนได้กินขนมคุณภาพดี ในราคาที่สบายกระเป๋าที่สุด"</span>
                     </p>
-                    <p>
+                    <p class="lang-en">
+                        When I moved from sharing bakes with friends to actually selling them, I had one very clear question in mind: <span class="highlight-quote">"In a time when everyone wants to spend wisely, how can I let my friends enjoy quality bakes at the most wallet-friendly price possible?"</span>
+                    </p>
+
+                    <p class="lang-th">
                         นี่จึงเป็นสาเหตุว่า ทำไมร้านเราถึงเลือกใช้แพ็กเกจจิ้ง (Packaging) ที่ดูเรียบง่าย ไม่ได้หวือหวาหรือมีดีไซน์หรูหรา จริงๆ ผมชื่นชมงานดีไซน์สวยๆ นะครับ แต่เพราะสุดท้ายค่าใช้จ่ายเหล่านั้นมักจะถูกบวกเพิ่มเข้าไปในราคาขนม ซึ่งมันคือโจทย์ที่ต่างออกไปสำหรับผม
+                    </p>
+                    <p class="lang-en">
+                        That's exactly why we chose simple packaging — nothing flashy, no luxurious design. Honestly, I admire beautiful design work, but in the end those costs always get added into the price of the bake — and that's a different goal from mine.
                     </p>
                 </div>
                 <div class="main-image-container">
-                    <img id="hero-img" src="1778162643014(1).png" alt="เชฟทำขนมในห้องครัวสไตล์ Ghibli">
+                    <img id="hero-img" src="1778162643014(1).png" alt="Baker in a Ghibli-style kitchen">
                 </div>
             </div>
 
-            <!-- 3 Core Values (แนวทางของร้าน) -->
             <div class="values-section">
-                <div class="values-header">สำหรับ Homie Bites ผมตัดสินใจเดินในแนวทางนี้ครับ:</div>
+                <div class="values-header">
+                    <span class="lang-th">สำหรับ Homie Bites ผมตัดสินใจเดินในแนวทางนี้ครับ:</span>
+                    <span class="lang-en">For Homie Bites, I've chosen to walk this path:</span>
+                </div>
                 <div class="values-grid">
                     <div class="value-card">
                         <i class="fa-solid fa-seedling"></i>
-                        <h3>ทุ่มเทให้กับวัตถุดิบ</h3>
-                        <p>ผมเลือกเอาต้นทุนส่วนใหญ่ไปลงกับวัตถุดิบคุณภาพสูง เนยแท้ แป้งเกรดดี และเครื่องที่อัดแน่น แบบเดียวกับที่ผมตั้งใจทำให้คนในครอบครัวกิน เพราะผมเชื่อว่าความสุขที่ทำให้เราอยากกลับมากินขนมชิ้นนั้นซ้ำๆ คือรสชาติและสัมผัสที่ถูกปากจริงๆ</p>
+                        <h3>
+                            <span class="lang-th">ทุ่มเทให้กับวัตถุดิบ</span>
+                            <span class="lang-en">All In on Ingredients</span>
+                        </h3>
+                        <p class="lang-th">ผมเลือกเอาต้นทุนส่วนใหญ่ไปลงกับวัตถุดิบคุณภาพสูง เนยแท้ แป้งเกรดดี และเครื่องที่อัดแน่น แบบเดียวกับที่ผมตั้งใจทำให้คนในครอบครัวกิน เพราะผมเชื่อว่าความสุขที่ทำให้เราอยากกลับมากินขนมชิ้นนั้นซ้ำๆ คือรสชาติและสัมผัสที่ถูกปากจริงๆ</p>
+                        <p class="lang-en">I put most of the cost into top-quality ingredients — real butter, fine flour, and generous fillings — just like what I'd make for my own family. Because the joy that makes you come back for the same bake again is the real taste and texture you genuinely love.</p>
                     </div>
                     <div class="value-card">
                         <i class="fa-solid fa-box-open"></i>
-                        <h3>เน้นความเรียบง่ายที่ปลอดภัย</h3>
-                        <p>ผมเลือกใช้บรรจุภัณฑ์ที่เน้นความสะอาด ปลอดภัย และรักษาคุณภาพขนมให้ดีที่สุด เพื่อลดต้นทุนแฝงที่ไม่จำเป็น แล้วเปลี่ยนส่วนต่างนั้นมา "ส่งต่อเป็นคุณภาพที่มากขึ้น" แทนครับ</p>
+                        <h3>
+                            <span class="lang-th">เน้นความเรียบง่ายที่ปลอดภัย</span>
+                            <span class="lang-en">Simple, Safe Packaging</span>
+                        </h3>
+                        <p class="lang-th">ผมเลือกใช้บรรจุภัณฑ์ที่เน้นความสะอาด ปลอดภัย และรักษาคุณภาพขนมให้ดีที่สุด เพื่อลดต้นทุนแฝงที่ไม่จำเป็น แล้วเปลี่ยนส่วนต่างนั้นมา "ส่งต่อเป็นคุณภาพที่มากขึ้น" แทนครับ</p>
+                        <p class="lang-en">I use packaging that focuses on cleanliness, safety, and keeping the bakes at their best — cutting unnecessary hidden costs and turning that savings into "more quality passed back to you" instead.</p>
                     </div>
                     <div class="value-card">
                         <i class="fa-solid fa-heart"></i>
-                        <h3>ความใส่ใจคือหัวใจ</h3>
-                        <p>เพราะคนทานคือเพื่อน ผมเลยอยากให้เงินทุกบาทที่เพื่อนจ่ายมา เปลี่ยนเป็นความอร่อยที่เข้าถึงง่าย และสั่งทานได้บ่อยเท่าที่ต้องการ</p>
+                        <h3>
+                            <span class="lang-th">ความใส่ใจคือหัวใจ</span>
+                            <span class="lang-en">Care at the Heart</span>
+                        </h3>
+                        <p class="lang-th">เพราะคนทานคือเพื่อน ผมเลยอยากให้เงินทุกบาทที่เพื่อนจ่ายมา เปลี่ยนเป็นความอร่อยที่เข้าถึงง่าย และสั่งทานได้บ่อยเท่าที่ต้องการ</p>
+                        <p class="lang-en">Because the people eating are friends, I want every baht they spend to turn into deliciousness that's easy to enjoy — and easy to order again, as often as they like.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Footer (Outro) -->
             <div class="footer">
-                <p>
+                <p class="lang-th">
                     ขอบคุณเพื่อนๆ ทุกคนที่เข้าใจและสนับสนุนแนวคิดของร้านขนมเล็กๆ ร้านนี้<br>
                     แม้หน้าตาภายนอกอาจจะดูธรรมดาเรียบง่าย แต่รับรองว่า <strong>"ความตั้งใจ"</strong> และ <strong>"รสชาติ"</strong> ที่อยู่ข้างใน...
+                </p>
+                <p class="lang-en">
+                    Thank you to every friend who understands and supports the heart of this little bakery.<br>
+                    The outside may look plain and simple, but I promise — <strong>"intention"</strong> and <strong>"flavor"</strong> are very much alive inside...
                 </p>
                 <div class="brand-signature">MADE WITH SINCERITY BY HOMIE BITES</div>
             </div>
 
         </div>
     </div>
+
+    <script>
+        function switchLang(lang) {
+            document.documentElement.setAttribute('lang', lang);
+            document.querySelectorAll('.lang-toggle button').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            try { localStorage.setItem('homiebites_lang', lang); } catch(e) {}
+        }
+
+        try {
+            const saved = localStorage.getItem('homiebites_lang');
+            if (saved === 'th' || saved === 'en') switchLang(saved);
+        } catch(e) {}
+    </script>
 
 </body>
 </html>
